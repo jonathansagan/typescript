@@ -16,10 +16,10 @@ class Sejour {
   toString(): string {
     return `${this._nom} - ${this._prix}€`;
   }
-  public getNom(): string {
-    return "nom $(this._nom)";
+  public get nom(): string {
+    return this._nom;
   }
-  public getPrix(): number {
+  public get prix(): number {
     return this._prix;
   }
 }
@@ -34,17 +34,16 @@ class SejourService {
     ];
   }
   // méthode findByName()
+  //Ne pas mettre de console.log() dans la méthode
   findByName(sejourName: string): Sejour | void {
     for (const sejour of this._Sejour) {
-      if (sejour.getNom() == sejourName) {
-        console.log("Voici le séjour ");
+      if (sejour.nom === sejourName) {
         return sejour;
-      } else {
-        console.log("Aucun séjour correspondant, try again ...");
-      }
+      } 
     }
   }
 }
 
-var sejourService = new SejourService();
+let sejourService = new SejourService();
 console.log(sejourService.findByName("Moorea"));
+console.log(sejourService.findByName("TestNegatif"));
